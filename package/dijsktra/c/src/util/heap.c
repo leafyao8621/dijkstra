@@ -47,6 +47,50 @@ int heap_push(struct Heap *heap, double key, uint64_t data) {
     return 0;
 }
 
+static void heapify_down(struct HeapNode *heap, uint64_t size) {
+    for (uint64_t i = 0; i < size;) {
+        if ((i << 1) + 2 < size) {
+            if (heap[(i << 1) + 1].key < heap[(i << 1) + 2].key) {
+                if (heap[i].key > heap[(i << 1) + 1].key) {
+                    swap(heap + i, heap + (i << 1) + 1);
+                    i = (i << 1) + 1;
+                } else {
+                    break;
+                }
+            } else {
+                if (heap[i].key > heap[(i << 1) + 2].key) {
+                    swap(heap + i, heap + (i << 1) + 2);
+                    i = (i << 1) + 2;
+                } else {
+                    break;
+                }
+            }
+        } else if ((i << 1) + 1 < size) {
+            if (heap[i].key > heap[(i << 1) + 1].key) {
+                swap(heap + i, heap + (i << 1) + 1);
+                i = (i << 1) + 1;
+            } else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+}
+
+int heap_pop(struct Heap *heap) {
+    if (!heap) {
+        return 1;
+    }
+    if (!heap->size) {
+        return 2;
+    }
+    --heap->size;
+    --heap->tail;
+    swap(heap->data, heap->tail);
+    heapify_down(heap->data, heap->size);
+    return 0;
+}
 int heap_finalize(struct Heap *heap) {
     if (!heap) {
         return 1;

@@ -21,6 +21,11 @@ int main(void) {
         heap_push(&heap, key[i], data[i]);
     }
     heap_log(&heap, stdout);
+    for (uint64_t i = 0; i < 5; ++i) {
+        printf("iteration %lu:\n", i);
+        heap_pop(&heap);
+        heap_log(&heap, stdout);
+    }
     heap_finalize(&heap);
     return 0;
 }
