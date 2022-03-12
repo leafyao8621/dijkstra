@@ -1,31 +1,30 @@
 #include "core/core.h"
 
 int main(void) {
-    struct Heap heap;
-    heap_initialize(&heap, 2);
-    double key[5] = {
-        5,
-        1,
-        2,
-        3,
-        4
-    };
-    uint64_t data[5] = {
-        5,
-        1,
-        2,
-        3,
-        4
-    };
-    for (uint64_t i = 0; i < 5; ++i) {
-        heap_push(&heap, key[i], data[i]);
+    struct Graph graph;
+    int ret = graph_initialize(&graph, "../../../graph/test.graph");
+    if (ret) {
+        goto finalize;
     }
-    heap_log(&heap, stdout);
-    for (uint64_t i = 0; i < 5; ++i) {
-        printf("iteration %lu:\n", i);
-        heap_pop(&heap);
-        heap_log(&heap, stdout);
+    ret = graph_log(&graph, stdout);
+    if (ret) {
+        goto finalize;
     }
-    heap_finalize(&heap);
+finalize:
+    switch (ret) {
+    case ERR_NULL_PTR:
+        puts("NULL_PTR");
+        break;
+    case ERR_FILE_ACCESS:
+        puts("FILE_ACCESS");
+        break;
+    case ERR_IDX_OUT_OF_RANGE:
+        puts("IDX_OUT_OF_RANGE");
+        break;
+    case ERR_NOT_CONNECTED:
+        puts("NOT_CONNECTED");
+        break;
+    }
+    graph_finalize(&graph);
     return 0;
 }

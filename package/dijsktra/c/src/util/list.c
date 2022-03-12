@@ -12,12 +12,13 @@ int list_initialize(struct List *list) {
     return 0;
 }
 
-int list_push(struct List *list, uint64_t data) {
+int list_push(struct List *list, uint64_t to, double distance) {
     if (!list) {
         return 1;
     }
     struct ListNode *temp = malloc(sizeof(struct ListNode));
-    temp->data = data;
+    temp->to = to;
+    temp->distance = distance;
     temp->next = 0;
     if (!list->tail) {
         list->head = temp;
@@ -45,7 +46,7 @@ int list_log(struct List *list, FILE *fout) {
         return 1;
     }
     for (struct ListNode *i = list->head; i; i = i->next) {
-        printf("%lu\n", i->data);
+        printf("%lu %lf\n", i->to, i->distance);
     }
     return 0;
 }

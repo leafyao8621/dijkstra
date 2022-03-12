@@ -5,7 +5,8 @@
 #include <stdint.h>
 
 struct ListNode {
-    uint64_t data;
+    uint64_t to;
+    double distance;
     struct ListNode *next;
 };
 
@@ -26,7 +27,7 @@ struct Heap {
 };
 
 int list_initialize(struct List *list);
-int list_push(struct List *list, uint64_t data);
+int list_push(struct List *list, uint64_t to, double distance);
 int list_finalize(struct List *list);
 int list_log(struct List *list, FILE *fout);
 
