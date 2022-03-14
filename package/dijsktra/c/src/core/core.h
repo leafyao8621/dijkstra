@@ -3,6 +3,8 @@
 
 #include "../util/util.h"
 
+#include <stdbool.h>
+
 #define ERR_NULL_PTR 1
 #define ERR_FILE_ACCESS 2
 #define ERR_IDX_OUT_OF_RANGE 3
@@ -15,7 +17,11 @@ struct Graph {
 };
 
 int graph_initialize(struct Graph *graph, const char *fn);
-int graph_distance(struct Graph *graph, uint64_t from, uint64_t to);
+int graph_distance(struct Graph *graph,
+                   uint64_t from,
+                   uint64_t to,
+                   double *out,
+                   bool verbose);
 int graph_finalize(struct Graph *graph);
 int graph_log(struct Graph *graph, FILE *fout);
 

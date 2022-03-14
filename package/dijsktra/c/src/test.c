@@ -10,6 +10,13 @@ int main(void) {
     if (ret) {
         goto finalize;
     }
+    double out = 0;
+    puts("Path:");
+    ret = graph_distance(&graph, 0, 2, &out, true);
+    if (ret) {
+        goto finalize;
+    }
+    printf("Distance: %lf\n", out);
 finalize:
     switch (ret) {
     case ERR_NULL_PTR:
