@@ -1,3 +1,5 @@
+import dijkstra.cpp._base
+
 def distance(fn: str, from_idx: int, to_idx: int, verbose: bool) -> float:
     """_summary_
 

@@ -23,7 +23,7 @@ static PyObject* distance(PyObject* self, PyObject* args) {
     double result = 0;
     try {
         Core::Graph graph(fn);
-        graph.distance(from, to, verbose);
+        result = graph.distance(from, to, verbose);
     } catch (Core::Graph::Err err) {
         switch (err) {
         case Core::Graph::Err::FILE_ACCESS:
