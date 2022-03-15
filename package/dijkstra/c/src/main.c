@@ -26,6 +26,9 @@ static PyObject* distance(PyObject* self, PyObject* args) {
     if (ret) {
         goto finalize;
     }
+    if (verbose) {
+        graph_log(&graph, stdout);
+    }
     ret = graph_distance(&graph, from, to, &result, verbose);
     if (ret) {
         goto finalize;

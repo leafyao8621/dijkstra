@@ -23,6 +23,9 @@ static PyObject* distance(PyObject* self, PyObject* args) {
     double result = 0;
     try {
         Core::Graph graph(fn);
+        if (verbose) {
+            graph.log(std::cout);
+        }
         result = graph.distance(from, to, verbose);
     } catch (Core::Graph::Err err) {
         switch (err) {

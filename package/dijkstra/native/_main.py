@@ -13,4 +13,6 @@ def distance(fn: str, from_idx: int, to_idx: int, verbose: bool) -> float:
         float: _description_
     """
     graph = Graph(fn)
+    if (verbose):
+        print(graph)
     return graph.distance(from_idx, to_idx, verbose)
