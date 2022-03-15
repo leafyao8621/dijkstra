@@ -34,6 +34,7 @@ static PyObject* distance(PyObject* self, PyObject* args) {
         goto finalize;
     }
 finalize:
+    graph_finalize(&graph);
     switch (ret) {
     case ERR_NULL_PTR:
         PyErr_SetString(PyExc_RuntimeError, "NULL_PTR");
@@ -48,7 +49,7 @@ finalize:
         PyErr_SetString(PyExc_RuntimeError, "NOT_CONNECTED");
         return NULL;
     }
-    graph_finalize(&graph);
+
     return PyFloat_FromDouble(result);
 }
 
