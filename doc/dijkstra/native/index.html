@@ -41,7 +41,7 @@ __all__ = [
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="dijkstra.native.distance"><code class="name flex">
-<span>def <span class="ident">distance</span></span>(<span>fn: str, from_idx: int, to_idx: int, verbose: bool) ‑> float</span>
+<span>def <span class="ident">distance</span></span>(<span>fn: str, from_idx: int, to_idx: int, verbose: bool = False) ‑> float</span>
 </code></dt>
 <dd>
 <div class="desc"><p><em>summary</em></p>
@@ -53,8 +53,8 @@ __all__ = [
 <dd><em>description</em></dd>
 <dt><strong><code>to_idx</code></strong> :&ensp;<code>int</code></dt>
 <dd><em>description</em></dd>
-<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code></dt>
-<dd><em>description</em></dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd><em>description</em>. Defaults to False.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -65,19 +65,21 @@ __all__ = [
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def distance(fn: str, from_idx: int, to_idx: int, verbose: bool) -&gt; float:
+<pre><code class="python">def distance(fn: str, from_idx: int, to_idx: int, verbose: bool=False) -&gt; float:
     &#34;&#34;&#34;_summary_
 
     Args:
         fn (str): _description_
         from_idx (int): _description_
         to_idx (int): _description_
-        verbose (bool): _description_
+        verbose (bool, optional): _description_. Defaults to False.
 
     Returns:
         float: _description_
     &#34;&#34;&#34;
     graph = Graph(fn)
+    if (verbose):
+        print(graph)
     return graph.distance(from_idx, to_idx, verbose)</code></pre>
 </details>
 </dd>
