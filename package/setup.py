@@ -14,5 +14,7 @@ setup(name="dijkstra",
       version="0.1",
       packages=["dijkstra",
                 "dijkstra.cpp",
-                "dijkstra.c"],
+                "dijkstra.c",
+                "dijkstra.native",
+                "dijkstra.native._core"],
       ext_modules=[cpp_base, c_base])
